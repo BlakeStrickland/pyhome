@@ -1,18 +1,34 @@
 import re
 
-def is_palindrome(sentence):
-    stripped = re.sub(r'[^A-Za-z]', "", sentence)
-    stripped = stripped.lower()
+def stripped(sentence):
+    return re.sub(r'[^A-Za-z]', "", sentence).lower()
 
-    if stripped == reverse_string(stripped):
+def is_palindrome(sentence):
+    if stripped(sentence) == reverse_string(sentence):
         return True
     else:
+        return False
+
+
+def back_to_front(text):
+    clean_text = stripped(text)
+    if len(clean_text) == 0 or len(clean_text) == 1:
+        return False
+    elif len(clean_text) < 4:
+        if clean_text[0] == clean_text[-1]:
+            return True
+        else:
+            return False
+    else:
+        if clean_text[0] == clean_text[-1]:
+            return back_to_front(clean_text[1:-1])
         return False
 
 def reverse_string(text):
     if len(text) == 0:
          return ''
     print("text[0] = {}, \ntext[1:] = {}\n".format(text[0], text[1:]))
+    text = stripped(text)
     return reverse_string(text[1:]) + text[0]
 
 def main():
