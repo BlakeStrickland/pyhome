@@ -1,4 +1,5 @@
 import re
+import random
 
 all_words = []
 def total_word_list(difficulty):
@@ -19,5 +20,21 @@ def total_word_list(difficulty):
                     total_word_list(difficulty)
         return all_words
 
-words = total_word_list('h')
-print(words)
+def money_word(my_list):
+    return random.choice(my_list)
+
+def draw_board(word):
+    b = ("_ " * (len(word)))
+    return b
+
+
+def main():
+    difficulty = input("Enter game mode: [E]asy [N]ormal [H]ard : ")
+    game_list = total_word_list(difficulty.lower())
+    winning_word = money_word(game_list)
+    game_board = draw_board(winning_word)
+    print(winning_word)
+    print("\n" + game_board + "\n")
+
+if __name__ == "__main__":
+    main()
