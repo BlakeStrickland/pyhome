@@ -27,6 +27,18 @@ def draw_board(word):
     b = ("_ " * (len(word)))
     return b
 
+def get_guess():
+    user_guess = input("Please enter a letter: ")
+
+def game_guess(guess, winning_word):
+    if len(guess) >= 2:
+        print("Your guess can only be 1 character")
+        get_guess()
+    elif len(guess) == 1:
+        if guess in winning_word:
+            winning_word.append(guess)
+
+
 
 def main():
     difficulty = input("Enter game mode: [E]asy [N]ormal [H]ard : ")
@@ -36,5 +48,6 @@ def main():
     print(winning_word)
     print("\n" + game_board + "\n")
 
+    # while "_ " in game_board:
 if __name__ == "__main__":
     main()
